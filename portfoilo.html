@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <title>Aman Raj — Portfolio</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg: #0b1220;              /* Dark gradient base */
+      --bg-soft: #0f172a;         /* Section bg */
+      --panel: rgba(255,255,255,0.06); /* Glass */
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --card: rgba(17, 24, 39, 0.55);
+      --border: rgba(148, 163, 184, 0.2);
+      --accent: #38bdf8;
+      --accent-2: #6366f1;
+      --accent-3: #22d3ee;
+      --success: #22c55e;
+      --shadow: 0 8px 30px rgba(2, 6, 23, .35);
+      --radius: 16px;
+      --radius-lg: 22px;
+      --maxw: 1100px;
+      --grad: radial-gradient(1200px 800px at 10% -20%, rgba(99,102,241,.18), transparent 50%),
+               radial-gradient(1000px 700px at 90% 10%, rgba(56,189,248,.18), transparent 50%),
+               linear-gradient(180deg, rgba(15,23,42,1) 0%, rgba(2,6,23,1) 100%);
+    }
+
+    /* Light mode variables */
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-soft: #ffffff;
+      --panel: rgba(255,255,255,0.85);
+      --text: #0f172a;
+      --muted: #475569;
+      --card: #ffffffcc;
+      --border: rgba(2,6,23,0.08);
+      --shadow: 0 10px 30px rgba(2, 6, 23, .08);
+      --grad: radial-gradient(1200px 800px at 10% -20%, rgba(99,102,241,.20), transparent 50%),
+               radial-gradient(1000px 700px at 90% 10%, rgba(56,189,248,.20), transparent 50%),
+               linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial;
+      color: var(--text);
+      background: var(--grad);
+      background-attachment: fixed;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* Container */
+    .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+
+    /* Top nav */
+    .nav {
+      position: sticky; top: 0; z-index: 1000;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: linear-gradient(180deg, var(--panel), transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: .3px; }
+    .brand .dot { width: 10px; height:10px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 0 18px rgba(99,102,241,.6); }
+    .nav a { color: var(--muted); font-weight: 600; font-size: .95rem; }
+    .nav a:hover { color: var(--text); }
+    .nav-links { display: flex; align-items: center; gap: 18px; }
+    .theme-btn { border: 1px solid var(--border); padding: 8px 12px; border-radius: 999px; background: var(--panel); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
+    .theme-btn:hover { color: var(--text); }
+
+    /* Hero */
+    .hero { padding: 72px 0 40px; }
+    .hero-card {
+      display: grid; grid-template-columns: 120px 1fr; gap: 22px; align-items: center;
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 22px; box-shadow: var(--shadow);
+    }
+    .avatar { width: 120px; height: 120px; border-radius: 20px; overflow: hidden; border: 3px solid rgba(99,102,241,.25); }
+    .title { font-family: 'Poppins', sans-serif; font-size: 2rem; line-height: 1.15; margin: 0 0 6px; }
+    .subtitle { color: var(--muted); margin: 0 0 12px; font-weight: 500; }
+
+    .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn { border: 1px solid var(--border); background: var(--panel); color: var(--text); padding: 10px 14px; border-radius: 12px; font-weight: 700; letter-spacing: .2px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b1220; border: none; }
+    .btn-ghost { background: transparent; }
+
+    /* Section */
+    section { padding: 56px 0; }
+    .section-title { text-align: center; font-family: 'Poppins', sans-serif; font-size: 1.6rem; margin: 0 0 26px; }
+    .section-desc { text-align: center; color: var(--muted); margin: -14px auto 26px; max-width: 800px; }
+    .divider { height: 1px; width: 100%; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 22px 0 0; }
+
+    /* Cards & grids */
+    .grid { display: grid; gap: 18px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px; box-shadow: var(--shadow); transition: transform .25s ease;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .meta { color: var(--muted); font-size: .95rem; margin-bottom: 10px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 2px; }
+    .tag { font-size: .8rem; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--panel); color: var(--muted); }
+
+    /* Timeline */
+    .timeline { position: relative; }
+    .timeline::before { content: ""; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(var(--accent), var(--accent-2)); opacity: .4; }
+    .tl-item { position: relative; padding-left: 34px; }
+    .tl-item:not(:last-child) { margin-bottom: 20px; }
+    .tl-dot { position: absolute; left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 0 0 4px rgba(99,102,241,.15); }
+    .tl-role { font-weight: 700; }
+    .tl-org { color: var(--muted); font-weight: 600; }
+    .tl-date { color: var(--muted); font-size: .92rem; margin: 4px 0 8px; }
+    .tl-points { margin: 0; padding-left: 18px; }
+    .tl-points li { margin: 6px 0; }
+
+    /* About */
+    .about { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow); }
+
+    /* Publications */
+    .pub-kind { font-size: .8rem; color: var(--muted); }
+
+    /* Skills */
+    .skills-wrap { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); }
+    .skill-group { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+    .skill-title { margin: 0 0 8px; font-weight: 800; }
+    .skill-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: var(--panel); padding: 8px 12px; border-radius: 12px; font-weight: 600; color: var(--muted); }
+
+    /* Contact */
+    .contact { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; }
+    .contact a { color: var(--text); }
+
+    /* Footer */
+    footer { color: var(--muted); text-align: center; padding: 36px 0 56px; }
+
+    /* Top button */
+    .top-btn { position: fixed; right: 16px; bottom: 16px; border-radius: 999px; padding: 12px 14px; border: 1px solid var(--border); background: var(--panel); box-shadow: var(--shadow); display: none; }
+    .top-btn.show { display: inline-flex; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 720px) {
+      .hero-card { grid-template-columns: 1fr; text-align: center; }
+      .avatar { margin: 0 auto; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .skills-wrap { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+
+    /* Reveal animations */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand"><span class="dot" aria-hidden="true"></span> Aman Raj</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-circle-half-stroke"></i>
+        <span>Theme</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card reveal">
+        <div class="avatar">
+          <img src="1724861909719.jpeg" alt="Portrait of Aman Raj" />
+        </div>
+        <div>
+          <h1 class="title">Aman Raj</h1>
+          <p class="subtitle">Software Development Engineer Intern @ Crestaerospace • Full Stack Developer • CSE Graduate</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="https://drive.google.com/file/d/1XrOpX1IMu9lhvgI8FGX7bpRzk5MDpgDa/view?usp=sharing" target="_blank" rel="noopener" aria-label="Open Resume">
+              <i class="fa-solid fa-file-lines"></i> Resume
+            </a>
+            <a class="btn" href="mailto:aman1303raj@gmail.com" aria-label="Send Email"><i class="fa-solid fa-envelope"></i> Email</a>
+            <a class="btn" href="https://linkedin.com/in/aman133raj" target="_blank" rel="noopener" aria-label="Open LinkedIn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a class="btn btn-ghost" href="https://github.com/raj133aman" target="_blank" rel="noopener" aria-label="Open GitHub"><i class="fa-brands fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container reveal">
+      <h2 class="section-title">About</h2>
+      <p class="section-desc">I build reliable, scalable web products with a focus on performance and developer experience. My toolkit spans React, Django/Flask/FastAPI, PostgreSQL, and Docker on AWS. I enjoy turning complex problems into clean, shippable solutions.</p>
+      <div class="about">
+        <p>
+          I am <strong>Aman Raj</strong>, a CSE graduate from DSCE (Class of 2025). I’ve worked on systems ranging from AI-powered resume analysis to a disaster preparedness platform with real-time maps and alerts, and optimization for a compact vacuum toilet control system.
+        </p>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container reveal">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <!-- Crestaerospace -->
+        <div class="card tl-item">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-role">Software Development Engineer Intern <span class="tl-org">— Crestaerospace Technologies</span></div>
+          <div class="tl-date">Jan 2025 – Present</div>
+          <ul class="tl-points">
+            <li>Optimized control algorithms for a <strong>Vacuum Toilet System</strong>, improving efficiency by <strong>15–20%</strong>.</li>
+            <li>Built a <strong>Disaster Preparedness Platform</strong> (React + Flask) with live feeds, interactive maps, and alerting.</li>
+          </ul>
+        </div>
+
+        <!-- CodSoft -->
+        <div class="card tl-item">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-role">Web Developer Intern <span class="tl-org">— CodSoft</span></div>
+          <div class="tl-date">Oct 2023 – Nov 2023</div>
+          <ul class="tl-points">
+            <li>Designed a responsive <strong>Profile Card</strong> using semantic HTML, CSS Grid/Flexbox, and vanilla JS.</li>
+            <li>Built a browser-based <strong>Virtual Assistant</strong> with voice/text interactions and modular logic.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container reveal">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-desc">Selected work. Each project includes a brief scope, core features, and the core stack used.</p>
+      <div class="grid grid-2">
+        <!-- Project 1 -->
+        <article class="card">
+          <h3>AI Resume Shortlisting & Analysis System</h3>
+          <div class="meta">Python · FastAPI · spaCy · REST APIs</div>
+          <ul>
+            <li>Evaluates resumes with <strong>85%+ accuracy</strong> using NLP pipelines.</li>
+            <li>Parses and normalizes candidate data; generates structured reports.</li>
+            <li>Exposes REST endpoints for seamless UI/automation integration.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">NLP</span>
+            <span class="tag">Microservices</span>
+            <span class="tag">Docker</span>
+          </div>
+          <div class="cta" style="margin-top:10px;">
+            <a class="btn" href="https://github.com/raj133aman" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Repo</a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card">
+          <h3>EducateTrade Simulator</h3>
+          <div class="meta">React · Django · PostgreSQL · Redis · AWS</div>
+          <ul>
+            <li>Real-time <strong>portfolio & P&amp;L</strong> with event-driven updates.</li>
+            <li>JWT auth, role-based access, and audit logging.</li>
+            <li>Containerized with Docker; CI/CD and AWS deployment.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Realtime</span>
+            <span class="tag">Auth</span>
+            <span class="tag">CI/CD</span>
+          </div>
+          <div class="cta" style="margin-top:10px;">
+            <a class="btn" href="https://github.com/raj133aman" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Repo</a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="card">
+          <h3>AI-Based Disaster Preparedness Platform</h3>
+          <div class="meta">React · Flask</div>
+          <ul>
+            <li>Interactive dashboards with <strong>live disaster feeds</strong> and geospatial overlays.</li>
+            <li>Map services for affected-area visualization and resource planning.</li>
+            <li>Alerting & collaboration modules for response teams.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Maps</span>
+            <span class="tag">Alerts</span>
+            <span class="tag">Analytics</span>
+          </div>
+          <div class="cta" style="margin-top:10px;">
+            <a class="btn" href="https://github.com/Messbo/DisasterPrep.git" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Repo</a>
+          </div>
+        </article>
+
+        <!-- Add more projects easily by copying article.card -->
+      </div>
+      <div class="divider"></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container reveal">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-wrap">
+        <div class="skill-group">
+          <div class="skill-title">Languages</div>
+          <div class="skill-badges">
+            <span class="badge"><i class="fa-solid fa-code"></i> Python</span>
+            <span class="badge"><i class="fa-solid fa-code"></i> C++</span>
+            <span class="badge"><i class="fa-solid fa-code"></i> JavaScript</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-title">Frameworks</div>
+          <div class="skill-badges">
+            <span class="badge"><i class="fa-brands fa-react"></i> React</span>
+            <span class="badge"><i class="fa-solid fa-fire"></i> Flask</span>
+            <span class="badge"><i class="fa-solid fa-bolt"></i> FastAPI</span>
+            <span class="badge"><i class="fa-solid fa-leaf"></i> Django</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-title">Data & Infra</div>
+          <div class="skill-badges">
+            <span class="badge"><i class="fa-solid fa-database"></i> PostgreSQL</span>
+            <span class="badge"><i class="fa-brands fa-docker"></i> Docker</span>
+            <span class="badge"><i class="fa-solid fa-cloud"></i> AWS</span>
+            <span class="badge"><i class="fa-solid fa-rocket"></i> Redis</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-title">Tools</div>
+          <div class="skill-badges">
+            <span class="badge"><i class="fa-solid fa-diagram-project"></i> Git</span>
+            <span class="badge"><i class="fa-solid fa-shield-halved"></i> JWT</span>
+            <span class="badge"><i class="fa-solid fa-flask-vial"></i> CI/CD</span>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="container reveal">
+      <h2 class="section-title">Publications</h2>
+      <p class="section-desc">Peer-reviewed and academic work presented as concise abstracts with links to the full paper.</p>
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="pub-kind">📄 Conference Paper</div>
+          <h3>AI-Based Disaster Preparedness Platform</h3>
+          <p>
+            An interactive platform that integrates AI-driven signals, real-time feeds, and geospatial maps to enable proactive disaster planning and rapid response.
+          </p>
+          <div class="cta" style="margin-top:10px;">
+            <a class="btn" href="https://drive.google.com/file/d/1jQGMCJX7RWKFpZnqTnFT9CtVzH8zEZcg/view" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> View Paper</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="pub-kind">📚 Research Publication</div>
+          <h3>Deep Learning in E-Waste Classification</h3>
+          <p>
+            CNN-based classification pipeline for e-waste categories, improving sorting accuracy and enabling scalable, automated recycling workflows.
+          </p>
+          <div class="cta" style="margin-top:10px;">
+            <a class="btn" href="https://drive.google.com/file/d/1TJTyTao2UX8DcBdyecnP09H_KYp5tlbv/view" target="_blank" rel="noopener"><i class="fa-solid fa-up-right-from-square"></i> View Paper</a>
+          </div>
+        </article>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container reveal">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact">
+        <p>📧 <a href="mailto:aman1303raj@gmail.com">aman1303raj@gmail.com</a></p>
+        <p>📞 <a href="tel:+917004191500">+91 7004191500</a></p>
+        <p>🔗 <a href="https://linkedin.com/in/aman133raj" target="_blank" rel="noopener">LinkedIn</a></p>
+        <p>🐙 <a href="https://github.com/raj133aman" target="_blank" rel="noopener">GitHub</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © 2025 Aman Raj • Built with care • <span style="opacity:.8">v1.0</span>
+    </div>
+  </footer>
+
+  <a href="#top" id="topBtn" class="top-btn" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+
+  <script>
+    /* Theme toggle with preference */
+    const html = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('pref-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+    toggle.addEventListener('click', () => {
+      const curr = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', curr);
+      localStorage.setItem('pref-theme', curr);
+    });
+
+    /* Reveal on scroll */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('in');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    /* Back to top button */
+    const topBtn = document.getElementById('topBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600) topBtn.classList.add('show'); else topBtn.classList.remove('show');
+    });
+  </script>
+</body>
+</html>
